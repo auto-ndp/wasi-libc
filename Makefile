@@ -437,8 +437,8 @@ startup_files: include_dirs
 libc: include_dirs \
     $(SYSROOT_LIB)/libc.a \
     $(SYSROOT_LIB)/libc-printscan-long-double.a \
-    $(SYSROOT_LIB)/libc-printscan-no-floating-point.a \
-    $(SYSROOT_LIB)/libwasi-emulated-mman.a
+    $(SYSROOT_LIB)/libc-printscan-no-floating-point.a 
+#    $(SYSROOT_LIB)/libwasi-emulated-mman.a
 
 finish: startup_files libc
 	#

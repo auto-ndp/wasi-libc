@@ -1,4 +1,6 @@
-#ifndef _WASI_EMULATED_MMAN
+#ifdef __faasm
+// Faasm uses standard mman for now
+#elif !defined(_WASI_EMULATED_MMAN)
 #error "WASI lacks a true mmap; to enable minimal mmap emulation, \
 compile with -D_WASI_EMULATED_MMAN and link with -lwasi-emulated-mman"
 #else
