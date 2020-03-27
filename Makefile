@@ -193,15 +193,7 @@ WASM_CFLAGS += --target=$(TARGET_TRIPLE)
 WASM_CFLAGS += -fno-trapping-math
 
 # Configure support for threads.
-ifeq ($(THREAD_MODEL), single)
-WASM_CFLAGS += -mthread-model single
-endif
-ifeq ($(THREAD_MODEL), posix)
 WASM_CFLAGS += -mthread-model posix -pthread
-endif
-ifeq ($(THREAD_MODEL), faasm)
-WASM_CFLAGS += -mthread-model single
-endif
 
 # Set the sysroot.
 WASM_CFLAGS += --sysroot="$(SYSROOT)"
@@ -444,7 +436,7 @@ finish: startup_files libc
 	#
 	# Create empty placeholder libraries.
 	#
-	for name in m rt crypt util xnet resolv dl; do \
+	for name in m rt pthread crypt util xnet resolv dl; do \
 	    $(WASM_AR) crs "$(SYSROOT_LIB)/lib$${name}.a"; \
 	done
 
