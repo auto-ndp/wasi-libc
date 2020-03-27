@@ -23,7 +23,7 @@ struct itimerval {
 int getitimer (int, struct itimerval *);
 int setitimer (int, const struct itimerval *__restrict, struct itimerval *__restrict);
 #endif
-#ifdef __wasilibc_unmodified_upstream /* WASI libc doesn't build the legacy functions */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI libc doesn't build the legacy functions */
 int utimes (const char *, const struct timeval [2]);
 #endif
 

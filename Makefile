@@ -256,6 +256,9 @@ MUSL_OMIT_HEADERS += \
 MUSL_OMIT_HEADERS += \
     "bits/errno.h"
 
+ifeq ($(THREAD_MODEL), faasm)
+# Include all other headers in Faasm
+else
 # Remove headers that aren't supported yet or that aren't relevant for WASI.
 MUSL_OMIT_HEADERS += \
     "sys/procfs.h" \
@@ -316,6 +319,7 @@ MUSL_OMIT_HEADERS += \
     "libintl.h" \
     "sys/sysmacros.h" \
     "utime.h"
+endif
 
 ifeq ($(THREAD_MODEL), single)
 # Remove headers not supported in single-threaded mode.
