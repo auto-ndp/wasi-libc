@@ -220,7 +220,7 @@ unsigned ualarm(unsigned, unsigned);
 #define L_SET 0
 #define L_INCR 1
 #define L_XTND 2
-#ifdef __wasilibc_unmodified_upstream /* WASI has no brk */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no brk */
 int brk(void *);
 #endif
 void *sbrk(intptr_t);
@@ -240,10 +240,10 @@ void setusershell(void);
 void endusershell(void);
 char *getusershell(void);
 int acct(const char *);
-long syscall(long, ...);
 int execvpe(const char *, char *const [], char *const []);
 int issetugid(void);
 #endif
+long syscall(long, ...);
 int getentropy(void *, size_t);
 extern int optreset;
 #endif
