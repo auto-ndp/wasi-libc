@@ -199,6 +199,9 @@ endif
 ifeq ($(THREAD_MODEL), posix)
 WASM_CFLAGS += -mthread-model posix -pthread
 endif
+ifeq ($(THREAD_MODEL), faasm)
+WASM_CFLAGS += -mthread-model single
+endif
 
 # Set the sysroot.
 WASM_CFLAGS += --sysroot="$(SYSROOT)"
@@ -445,6 +448,8 @@ finish: startup_files libc
 	    $(WASM_AR) crs "$(SYSROOT_LIB)/lib$${name}.a"; \
 	done
 
+# This bit is not executed in Faasm
+finish_checks:
 	#
 	# Collect metadata on the sysroot and perform sanity checks.
 	#
@@ -522,7 +527,13 @@ finish: startup_files libc
 	# The build succeeded! The generated sysroot is in $(SYSROOT).
 	#
 
-install: finish
+ifeq ($(THREAD_MODEL), faasm)
+INSTALL_DEPS=finish
+else
+INSTALL_DEPS=finish finish_checks
+endif
+
+install: $(INSTALL_DEPS)
 	mkdir -p "$(INSTALL_DIR)"
 	cp -r "$(SYSROOT)/lib" "$(SYSROOT)/share" "$(SYSROOT)/include" "$(INSTALL_DIR)"
 
