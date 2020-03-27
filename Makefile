@@ -444,7 +444,7 @@ finish: startup_files libc
 	#
 	# Create empty placeholder libraries.
 	#
-	for name in m rt pthread crypt util xnet resolv dl; do \
+	for name in m rt crypt util xnet resolv dl; do \
 	    $(WASM_AR) crs "$(SYSROOT_LIB)/lib$${name}.a"; \
 	done
 
