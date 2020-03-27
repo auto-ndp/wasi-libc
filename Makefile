@@ -195,6 +195,9 @@ WASM_CFLAGS += -fno-trapping-math
 # Configure support for threads.
 WASM_CFLAGS += -mthread-model posix -pthread -ftls-model=local-exec
 
+# Add Faasm def
+WASM_CFLAGS += -D__faasm
+
 # Set the sysroot.
 WASM_CFLAGS += --sysroot="$(SYSROOT)"
 
