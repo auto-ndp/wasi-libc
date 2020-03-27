@@ -23,7 +23,8 @@ int nanosleep(const struct timespec *rqtp, struct timespec *rem) {
   return 0;
 }
 
-#if defined(__wasilibc_unmodified_upstream) || defined(_REENTRANT)
-__strong_reference(nanosleep, thrd_sleep);
-#else
-#endif
+// Ignore, breaks when triggered by threading
+//#if defined(__wasilibc_unmodified_upstream) || defined(_REENTRANT)
+//__strong_reference(nanosleep, thrd_sleep);
+//#else
+//#endif

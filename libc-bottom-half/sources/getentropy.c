@@ -2,9 +2,10 @@
 #include <errno.h>
 #include <unistd.h>
 
-#ifdef _REENTRANT
-#error With threads support, getentropy is not intended to be a cancellation point.
-#endif
+// Ignore threading warnings
+// #ifdef _REENTRANT
+// #error With threads support, getentropy is not intended to be a cancellation point.
+// #endif
 
 int __getentropy(void *buffer, size_t len) {
     if (len > 256) {

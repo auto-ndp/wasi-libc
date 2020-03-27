@@ -193,7 +193,7 @@ WASM_CFLAGS += --target=$(TARGET_TRIPLE)
 WASM_CFLAGS += -fno-trapping-math
 
 # Configure support for threads.
-WASM_CFLAGS += -mthread-model posix -pthread
+WASM_CFLAGS += -mthread-model posix -pthread -ftls-model=local-exec
 
 # Set the sysroot.
 WASM_CFLAGS += --sysroot="$(SYSROOT)"
@@ -530,3 +530,6 @@ install: $(INSTALL_DEPS)
 	cp -r "$(SYSROOT)/lib" "$(SYSROOT)/share" "$(SYSROOT)/include" "$(INSTALL_DIR)"
 
 .PHONY: default startup_files libc finish install include_dirs
+
+clean:
+	cd libc-top-half/musl && make clean
