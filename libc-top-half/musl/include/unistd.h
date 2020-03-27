@@ -142,8 +142,8 @@ int fexecve(int, char *const [], char *const []);
 #endif
 _Noreturn void _exit(int);
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no getpid etc. */
 pid_t getpid(void);
+#ifdef __wasilibc_unmodified_upstream /* WASI has no getpid etc. */
 pid_t getppid(void);
 pid_t getpgrp(void);
 pid_t getpgid(pid_t);

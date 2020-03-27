@@ -1,11 +1,11 @@
-#ifdef __faasm
-// Faasm uses standard mman for now
-#elif !defined(_WASI_EMULATED_MMAN)
+#if !defined(_WASI_EMULATED_MMAN) && !defined(__faasm)
 #error "WASI lacks a true mmap; to enable minimal mmap emulation, \
 compile with -D_WASI_EMULATED_MMAN and link with -lwasi-emulated-mman"
-#else
+#endif
+
 #ifndef	_SYS_MMAN_H
 #define	_SYS_MMAN_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -153,5 +153,6 @@ int shm_unlink (const char *);
 #ifdef __cplusplus
 }
 #endif
+
 #endif
-#endif
+
