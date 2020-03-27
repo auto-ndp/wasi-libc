@@ -136,7 +136,7 @@ LIBC_TOP_HALF_MUSL_SOURCES = \
         env/unsetenv.c \
         unistd/posix_close.c \
     ) \
-    $(filter-out %/procfdname.c %/syscall.c %/syscall_ret.c %/vdso.c %/version.c, \
+    $(filter-out %/procfdname.c %/vdso.c %/version.c, \
                  $(wildcard $(LIBC_TOP_HALF_MUSL_SRC_DIR)/internal/*.c)) \
     $(filter-out %/flockfile.c %/funlockfile.c %/__lockfile.c %/ftrylockfile.c \
                  %/rename.c \
@@ -241,7 +241,7 @@ SYSROOT_SHARE = $(SYSROOT)/share/$(MULTIARCH_TRIPLE)
 # sysroot's include directory.
 MUSL_OMIT_HEADERS :=
 
-# Remove files which aren't headers (we generate alltypes.h below).
+# Remove files which aren't headers (we generate alltypes.h and syscall.h below).
 MUSL_OMIT_HEADERS += \
     "bits/syscall.h.in" \
     "bits/alltypes.h.in" \
@@ -403,6 +403,11 @@ include_dirs:
 	    $(LIBC_TOP_HALF_MUSL_DIR)/arch/wasm32/bits/alltypes.h.in \
 	    $(LIBC_TOP_HALF_MUSL_DIR)/include/alltypes.h.in \
 	    > "$(SYSROOT_INC)/bits/alltypes.h"
+
+	# Generate musl's syscall header.
+	sed -n -e s/__NR_/SYS_/p < \
+	    $(LIBC_TOP_HALF_MUSL_DIR)/arch/wasm32/bits/syscall.h.in \
+	    > "$(SYSROOT_INC)/bits/syscall.h"
 
 	# Copy in the bulk of musl's public header files.
 	cp -r "$(LIBC_TOP_HALF_MUSL_INC)"/* "$(SYSROOT_INC)"

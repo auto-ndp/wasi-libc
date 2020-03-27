@@ -1,7 +1,7 @@
 #ifndef _SYS_SYSCALL_H
 #define _SYS_SYSCALL_H
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no syscall */
+#if defined(__wasilibc_unmodified_upstream) || defined(__faasm) 
 #include <bits/syscall.h>
 #else
 /* The generic syscall funtion is not yet implemented. */
