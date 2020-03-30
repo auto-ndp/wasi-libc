@@ -193,7 +193,10 @@ WASM_CFLAGS += --target=$(TARGET_TRIPLE)
 WASM_CFLAGS += -fno-trapping-math
 
 # Configure support for threads.
-WASM_CFLAGS += -mthread-model posix -pthread -ftls-model=local-exec
+# We **must** avoid introducing atomics, but still want to include the ability
+# to do threading. See:
+# https://reviews.llvm.org/D59281 
+WASM_CFLAGS += -mno-atomics -mthread-model posix -ftls-model=local-exec
 
 # Add Faasm def
 WASM_CFLAGS += -D__faasm
