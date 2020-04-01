@@ -5,6 +5,7 @@
 #include <stddef.h>
 
 #include <__typedef_sa_family_t.h>
+#include <__typedef_max_align_t.h>
 
 struct sockaddr {
     _Alignas(max_align_t) sa_family_t sa_family;

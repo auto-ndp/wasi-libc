@@ -400,7 +400,7 @@ int socketpair (int, int, int, int [2]);
 
 int shutdown (int, int);
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no bind/connect/listen/accept */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no bind/connect/listen/accept */
 int bind (int, const struct sockaddr *, socklen_t);
 int connect (int, const struct sockaddr *, socklen_t);
 int listen (int, int);
@@ -425,7 +425,7 @@ ssize_t recvmsg (int, struct msghdr *, int);
 #endif
 
 int getsockopt (int, int, int, void *__restrict, socklen_t *__restrict);
-#ifdef __wasilibc_unmodified_upstream /* WASI has no setsockopt */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no setsockopt */
 int setsockopt (int, int, int, const void *, socklen_t);
 #endif
 

@@ -48,6 +48,16 @@
 #define PF_UNIX         PF_LOCAL
 #define PF_FILE         PF_LOCAL
 #define PF_INET         2
+#define PF_INET6        10
+#define PF_PACKET       17
+
+#define AF_UNSPEC       PF_UNSPEC
+#define AF_LOCAL        PF_LOCAL
+#define AF_UNIX         AF_LOCAL
+#define AF_FILE         AF_LOCAL
+#define AF_INET         PF_INET
+#define AF_INET6        PF_INET6
+#define AF_PACKET       PF_PACKET
 
 #endif // End Faasm networking
 

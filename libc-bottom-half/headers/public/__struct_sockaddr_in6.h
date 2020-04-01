@@ -7,6 +7,7 @@
 #include <__typedef_sa_family_t.h>
 #include <__typedef_in_port_t.h>
 #include <__struct_in6_addr.h>
+#include <__typedef_max_align_t.h>
 
 struct sockaddr_in6 {
     _Alignas(max_align_t) sa_family_t sin6_family;
