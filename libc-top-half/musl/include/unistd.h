@@ -161,11 +161,12 @@ pid_t tcgetpgrp(int);
 int tcsetpgrp(int, pid_t);
 #endif
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no getuid etc. */
 uid_t getuid(void);
 uid_t geteuid(void);
 gid_t getgid(void);
 gid_t getegid(void);
+
+#ifdef __wasilibc_unmodified_upstream /* WASI has no getuid etc. */
 int getgroups(int, gid_t []);
 int setuid(uid_t);
 int seteuid(uid_t);
