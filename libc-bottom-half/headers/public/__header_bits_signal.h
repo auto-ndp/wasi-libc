@@ -38,4 +38,6 @@
 #define SIGIO     SIGPOLL
 #define SIGUNUSED SIGSYS
 
+#define _NSIG 65
+
 #endif
