@@ -256,7 +256,7 @@ void (*sigset(int, void (*)(int)))(int);
 #endif
 #endif
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no signals */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no signals */
 #if defined(_BSD_SOURCE) || defined(_GNU_SOURCE)
 #define NSIG _NSIG
 typedef void (*sig_t)(int);
@@ -280,7 +280,7 @@ int sigandset(sigset_t *, const sigset_t *, const sigset_t *);
 
 typedef int sig_atomic_t;
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no signals */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no signals */
 void (*signal(int, void (*)(int)))(int);
 #endif
 int raise(int);

@@ -28,7 +28,7 @@ TYPEDEF double double_t;
 
 #if defined(__NEED_max_align_t) && !defined(__DEFINED_max_align_t)
 #define __need_max_align_t
-#include <stddef.h>
+#include <__typedef_max_align_t.h>
 #define __DEFINED_max_align_t
 #endif
 

@@ -126,7 +126,7 @@ int rand_r (unsigned *);
 
 #if defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) \
  || defined(_BSD_SOURCE)
-#ifdef __wasilibc_unmodified_upstream /* WASI has no absolute paths */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no absolute paths */
 char *realpath (const char *__restrict, char *__restrict);
 #endif
 long int random (void);

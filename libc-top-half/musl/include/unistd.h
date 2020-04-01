@@ -47,7 +47,7 @@ int pipe2(int [2], int);
 #endif
 int close(int);
 int posix_close(int, int);
-#ifdef __wasilibc_unmodified_upstream /* WASI has no dup */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no dup */
 int dup(int);
 int dup2(int, int);
 int dup3(int, int, int);
@@ -118,7 +118,7 @@ int ftruncate(int, off_t);
 int access(const char *, int);
 int faccessat(int, const char *, int, int);
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no cwd */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no cwd */
 int chdir(const char *);
 int fchdir(int);
 char *getcwd(char *, size_t);
