@@ -393,7 +393,7 @@ struct sockaddr_storage {
 #include <__struct_sockaddr_storage.h>
 #endif
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no socket/socketpair */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no socket/socketpair */
 int socket (int, int, int);
 int socketpair (int, int, int, int [2]);
 #endif
@@ -408,18 +408,18 @@ int accept (int, struct sockaddr *__restrict, socklen_t *__restrict);
 int accept4(int, struct sockaddr *__restrict, socklen_t *__restrict, int);
 #endif
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no getsockname/getpeername */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no getsockname/getpeername */
 int getsockname (int, struct sockaddr *__restrict, socklen_t *__restrict);
 int getpeername (int, struct sockaddr *__restrict, socklen_t *__restrict);
 #endif
 
 ssize_t send (int, const void *, size_t, int);
 ssize_t recv (int, void *, size_t, int);
-#ifdef __wasilibc_unmodified_upstream /* WASI has no sendto/recvfrom */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no sendto/recvfrom */
 ssize_t sendto (int, const void *, size_t, int, const struct sockaddr *, socklen_t);
 ssize_t recvfrom (int, void *__restrict, size_t, int, struct sockaddr *__restrict, socklen_t *__restrict);
 #endif
-#ifdef __wasilibc_unmodified_upstream /* WASI has no sendmsg/recvmsg */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no sendmsg/recvmsg */
 ssize_t sendmsg (int, const struct msghdr *, int);
 ssize_t recvmsg (int, struct msghdr *, int);
 #endif

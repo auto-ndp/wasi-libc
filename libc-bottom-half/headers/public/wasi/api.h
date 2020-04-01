@@ -1526,6 +1526,13 @@ typedef uint16_t __wasi_riflags_t;
  */
 #define __WASI_RIFLAGS_RECV_WAITALL (UINT16_C(2))
 
+#ifdef __faasm
+/**
+ * This is referenced in header_sys_socket and seems to be missing
+ */
+#define __WASI_RIFLAGS_RECV_DATA_TRUNCATED (UINT16_C(3))
+#endif
+
 _Static_assert(sizeof(__wasi_riflags_t) == 2, "witx calculated size");
 _Static_assert(_Alignof(__wasi_riflags_t) == 2, "witx calculated align");
 

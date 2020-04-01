@@ -57,4 +57,8 @@
 #define AT_SYMLINK_FOLLOW   (0x2)
 #define AT_REMOVEDIR        (0x4)
 
+#ifdef __faasm
+int lockf(int, int, off_t);
+#endif
+
 #endif

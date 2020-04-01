@@ -10,7 +10,13 @@
 extern "C" {
 #endif
 
+int getrlimit (int resource, struct rlimit *);
+int setrlimit (int resource, const struct rlimit *);
+
 int getrusage(int who, struct rusage *usage);
+
+int getpriority (int which, id_t who);
+int setpriority (int which, id_t who, int prio);
 
 #ifdef __cplusplus
 }

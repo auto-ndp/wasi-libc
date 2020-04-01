@@ -9,6 +9,7 @@
 
 #define POLLIN POLLRDNORM
 #define POLLOUT POLLWRNORM
+#define POLLPRI 0x3
 
 #define POLLERR 0x1000
 #define POLLHUP 0x2000

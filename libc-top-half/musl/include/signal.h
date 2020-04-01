@@ -199,7 +199,7 @@ int __libc_current_sigrtmax(void);
 #define SIGRTMAX  (__libc_current_sigrtmax())
 #endif
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no signals */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no signals */
 int kill(pid_t, int);
 
 int sigemptyset(sigset_t *);

@@ -59,6 +59,16 @@
 #define AF_INET6        PF_INET6
 #define AF_PACKET       PF_PACKET
 
+#ifndef SO_DEBUG
+#define SO_DEBUG        1
+#define SO_REUSEADDR    2
+#define SO_TYPE         3
+#define SO_ERROR        4
+#endif
+
+#define SOMAXCONN       128
+
+
 #endif // End Faasm networking
 
 #ifdef __cplusplus

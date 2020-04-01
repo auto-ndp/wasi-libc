@@ -41,7 +41,7 @@ extern "C" {
 
 #include <bits/alltypes.h>
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no pipe */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no pipe */
 int pipe(int [2]);
 int pipe2(int [2], int);
 #endif
@@ -130,7 +130,7 @@ unsigned alarm(unsigned);
 unsigned sleep(unsigned);
 int pause(void);
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no fork/exec */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no fork/exec */
 pid_t fork(void);
 int execve(const char *, char *const [], char *const []);
 int execv(const char *, char *const []);
@@ -142,8 +142,8 @@ int fexecve(int, char *const [], char *const []);
 #endif
 _Noreturn void _exit(int);
 
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no getpid etc. */
 pid_t getpid(void);
-#ifdef __wasilibc_unmodified_upstream /* WASI has no getpid etc. */
 pid_t getppid(void);
 pid_t getpgrp(void);
 pid_t getpgid(pid_t);
@@ -151,7 +151,7 @@ int setpgid(pid_t, pid_t);
 pid_t setsid(void);
 pid_t getsid(pid_t);
 #endif
-#ifdef __wasilibc_unmodified_upstream /* WASI has no ttyname */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no ttyname */
 char *ttyname(int);
 int ttyname_r(int, char *, size_t);
 #endif
@@ -251,7 +251,7 @@ extern int optreset;
 
 #ifdef _GNU_SOURCE
 extern char **environ;
-#ifdef __wasilibc_unmodified_upstream /* WASI has no get/setresuid */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no get/setresuid */
 int setresuid(uid_t, uid_t, uid_t);
 int setresgid(gid_t, gid_t, gid_t);
 int getresuid(uid_t *, uid_t *, uid_t *);
