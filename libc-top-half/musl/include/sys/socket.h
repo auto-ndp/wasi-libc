@@ -84,7 +84,7 @@ struct linger {
 	int l_linger;
 };
 
-#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* Use alternate WASI libc headers */
+#ifdef __wasilibc_unmodified_upstream /* Use alternate WASI libc headers */
 #define SHUT_RD 0
 #define SHUT_WR 1
 #define SHUT_RDWR 2

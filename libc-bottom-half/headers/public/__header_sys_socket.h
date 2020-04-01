@@ -30,6 +30,27 @@
 #define AF_INET6 2
 #define AF_UNIX 3
 
+#ifdef __faasm // Some simple Faasm networking
+
+#ifndef SOCK_STREAM
+#define SOCK_STREAM    1
+#define SOCK_DGRAM     2
+#endif
+
+#define SOCK_RAW       3
+#define SOCK_RDM       4
+#define SOCK_SEQPACKET 5
+#define SOCK_DCCP      6
+#define SOCK_PACKET    10
+
+#define PF_UNSPEC       0
+#define PF_LOCAL        1
+#define PF_UNIX         PF_LOCAL
+#define PF_FILE         PF_LOCAL
+#define PF_INET         2
+
+#endif // End Faasm networking
+
 #ifdef __cplusplus
 extern "C" {
 #endif
