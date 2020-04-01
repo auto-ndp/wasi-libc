@@ -36,6 +36,7 @@ void *__mmap(void *start, size_t len, int prot, int flags, int fd, off_t off)
 	return (void *)__syscall_ret(ret);
 }
 
-weak_alias(__mmap, mmap);
-
-weak_alias(mmap, mmap64);
+// Ensure high-level Faasm intercept
+//weak_alias(__mmap, mmap);
+//
+//weak_alias(mmap, mmap64);
