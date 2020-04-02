@@ -1,11 +1,16 @@
+#ifndef __faasm
 extern void __wasm_call_ctors(void);
+#endif
+
 extern int __original_main(void);
 extern void __prepare_for_exit(void);
 void _Exit(int) __attribute__((noreturn));
 
 void _start(void) {
+#ifndef __faasm
     // The linker synthesizes this to call constructors.
     __wasm_call_ctors();
+#endif
 
     // Call `__original_main` which will either be the application's zero-argument
     // `__original_main` function or a libc routine which calls `__main_void`.
