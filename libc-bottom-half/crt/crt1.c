@@ -5,7 +5,8 @@ extern void __prepare_for_exit(void);
 
 void _start(void) {
     // The linker synthesizes this to call constructors.
-    __wasm_call_ctors();
+    // In Faasm we call this independently
+    // __wasm_call_ctors();
 
     // Call `__original_main` which will either be the application's zero-argument
     // `__original_main` function or a libc routine which calls `__main_void`.
