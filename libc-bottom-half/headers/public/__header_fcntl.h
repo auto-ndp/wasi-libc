@@ -4,6 +4,7 @@
 #include <wasi/api.h>
 #include <__seek.h>
 #include <__mode_t.h>
+#include <__typedef_off_t.h>
 
 #define O_APPEND __WASI_FDFLAGS_APPEND
 #define O_DSYNC __WASI_FDFLAGS_DSYNC
