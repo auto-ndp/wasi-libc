@@ -78,6 +78,17 @@ int fcntl(int fildes, int cmd, ...) {
       }
       return 0;
     }
+    case F_DUPFD:
+    case F_DUPFD_CLOEXEC: {
+      int new_fd = -1;
+      __wasi_errno_t error = __wasi_fd_dup(fildes, &new_fd);
+
+      if(error != 0) {
+        errno = error;
+        return -1;
+      }
+      return new_fd;
+    }
     default:
       errno = EINVAL;
       return -1;
