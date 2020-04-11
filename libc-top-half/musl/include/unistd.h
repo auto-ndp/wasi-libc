@@ -225,11 +225,12 @@ unsigned ualarm(unsigned, unsigned);
 int brk(void *);
 #endif
 void *sbrk(intptr_t);
+
+int getpagesize(void);
 #ifdef __wasilibc_unmodified_upstream /* WASI has no processes */
 pid_t vfork(void);
 int vhangup(void);
 int chroot(const char *);
-int getpagesize(void);
 int getdtablesize(void);
 int sethostname(const char *, size_t);
 int getdomainname(char *, size_t);
