@@ -257,6 +257,7 @@ void (*sigset(int, void (*)(int)))(int);
 #endif
 
 #if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no signals */
+
 #if defined(_BSD_SOURCE) || defined(_GNU_SOURCE)
 #define NSIG _NSIG
 typedef void (*sig_t)(int);
