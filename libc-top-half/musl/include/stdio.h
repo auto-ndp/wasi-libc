@@ -143,7 +143,7 @@ void perror(const char *);
 int setvbuf(FILE *__restrict, char *__restrict, int, size_t);
 void setbuf(FILE *__restrict, char *__restrict);
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no temp directories */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no temp directories */
 char *tmpnam(char *);
 FILE *tmpfile(void);
 #else
