@@ -395,7 +395,9 @@ $(LIBC_TOP_HALF_ALL_OBJS) $(MUSL_PRINTSCAN_LONG_DOUBLE_OBJS) $(MUSL_PRINTSCAN_NO
     -Wno-unknown-pragmas
 
 include_dirs:
-	$(RM) -r "$(SYSROOT)"
+	# Removing this for Faasm, don't want to nuke the whole sysroot just to 
+	# rebuild libc (although technically everything depends on it)
+	# $(RM) -r "$(SYSROOT)"
 
 	#
 	# Install the include files.
