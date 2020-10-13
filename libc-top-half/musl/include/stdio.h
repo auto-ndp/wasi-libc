@@ -157,7 +157,7 @@ FILE *tmpfile(void) __attribute__((__deprecated__("tmpfile is not defined on WAS
 FILE *fmemopen(void *__restrict, size_t, const char *__restrict);
 FILE *open_memstream(char **, size_t *);
 FILE *fdopen(int, const char *);
-#ifdef __wasilibc_unmodified_upstream /* WASI has no popen */
+#if defined(__faasm) || defined(__wasilibc_unmodified_upstream) /* WASI has no popen */
 FILE *popen(const char *, const char *);
 int pclose(FILE *);
 #endif
