@@ -201,6 +201,9 @@ WASM_CFLAGS += -mno-atomics -mthread-model posix -ftls-model=local-exec
 # Add Faasm def
 WASM_CFLAGS += -D__faasm
 
+# Compile thread-safe versions of libc code
+WASM_CFLAGS += -D_REENTRANT
+
 # Set the sysroot.
 WASM_CFLAGS += --sysroot="$(SYSROOT)"
 
