@@ -6,11 +6,29 @@
 
 // Define configuration macros for dlmalloc.
 
-// WebAssembly doesn't have mmap-style memory allocation.
+#ifdef __faasm
+// Faasm supports mmap/ munmap
+#define HAVE_MMAP 1
+
+// Faasm supports normal wasm memory growth, but we need to be able to reclaim
+// memory, so force everything through mmap/ munmap
+#define HAVE_MORECORE 1
+#define MORECORE_CONTIGUOUS 1
+
+// Faasm supports shrinking linear memory using offsets
+#define MORECORE_CANNOT_TRIM 0
+
+#else
+// Normal WebAssembly doesn't have mmap
 #define HAVE_MMAP 0
 
-// WebAssembly doesn't support shrinking linear memory.
+// Normaly WebAssembly supports standard contiguous sbrk-style memory growth
+#define HAVE_MORECORE 1
+#define MORECORE_CONTIGUOUS 1
+
+// WebAssembly doesn't support shrinking linear memory 
 #define MORECORE_CANNOT_TRIM 1
+#endif
 
 // Disable sanity checks to reduce code size.
 #define ABORT __builtin_unreachable()
