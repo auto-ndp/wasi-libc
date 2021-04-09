@@ -17,6 +17,10 @@
 #define MORECORE_CONTIGUOUS 1
 #undef MORECORE_CANNOT_TRIM
 
+// Faasm relies on malloc being thread-safe
+#define USE_LOCKS 1
+#define USE_SPIN_LOCKS 0
+
 #else
 // Normal WebAssembly doesn't have mmap
 #define HAVE_MMAP 0
