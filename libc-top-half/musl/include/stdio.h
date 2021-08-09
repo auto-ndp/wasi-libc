@@ -183,7 +183,7 @@ char *ctermid(char *);
 #endif
 
 
-#ifdef __wasilibc_unmodified_upstream /* WASI has no temp directories */
+#if defined(__faasm) || (__wasilibc_unmodified_upstream) /* WASI has no temp directories */
 #if defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) \
  || defined(_BSD_SOURCE)
 #define P_tmpdir "/tmp"
