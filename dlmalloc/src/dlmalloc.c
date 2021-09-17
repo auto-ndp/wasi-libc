@@ -14,7 +14,7 @@
 // memory, so force everything through mmap/ munmap
 // Faasm also supports shrinking linear memory using offsets
 #define HAVE_MORECORE 1
-#define MORECORE_CONTIGUOUS 1
+#define MORECORE_CONTIGUOUS 0
 #undef MORECORE_CANNOT_TRIM
 
 // Faasm relies on malloc being thread-safe
