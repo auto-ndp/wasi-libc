@@ -156,6 +156,7 @@ LIBC_TOP_HALF_MUSL_SOURCES = \
     $(wildcard $(LIBC_TOP_HALF_MUSL_SRC_DIR)/prng/*.c) \
     $(wildcard $(LIBC_TOP_HALF_MUSL_SRC_DIR)/conf/*.c) \
     $(wildcard $(LIBC_TOP_HALF_MUSL_SRC_DIR)/ctype/*.c) \
+    $(wildcard $(LIBC_TOP_HALF_MUSL_SRC_DIR)/process/wait*.c) \
     $(filter-out %/__signbit.c %/__signbitf.c %/__signbitl.c \
                  %/__fpclassify.c %/__fpclassifyf.c %/__fpclassifyl.c \
                  %/ceilf.c %/ceil.c \
@@ -195,7 +196,7 @@ WASM_CFLAGS += -fno-trapping-math
 # Configure support for threads.
 # We **must** avoid introducing atomics, but still want to include the ability
 # to do threading. See:
-# https://reviews.llvm.org/D59281 
+# https://reviews.llvm.org/D59281
 WASM_CFLAGS += -mno-atomics -mthread-model posix -ftls-model=local-exec
 
 # Add Faasm def
@@ -395,7 +396,7 @@ $(LIBC_TOP_HALF_ALL_OBJS) $(MUSL_PRINTSCAN_LONG_DOUBLE_OBJS) $(MUSL_PRINTSCAN_NO
     -Wno-unknown-pragmas
 
 include_dirs:
-	# Removing this for Faasm, don't want to nuke the whole sysroot just to 
+	# Removing this for Faasm, don't want to nuke the whole sysroot just to
 	# rebuild libc (although technically everything depends on it)
 	# $(RM) -r "$(SYSROOT)"
 
@@ -446,7 +447,7 @@ startup_files: include_dirs
 libc: include_dirs \
     $(SYSROOT_LIB)/libc.a \
     $(SYSROOT_LIB)/libc-printscan-long-double.a \
-    $(SYSROOT_LIB)/libc-printscan-no-floating-point.a 
+    $(SYSROOT_LIB)/libc-printscan-no-floating-point.a
 #    $(SYSROOT_LIB)/libwasi-emulated-mman.a
 
 finish: startup_files libc
